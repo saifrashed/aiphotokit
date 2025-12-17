@@ -1,0 +1,40 @@
+{
+    "themes": [
+        {
+            "title": "Beautify",
+            "image_url": "assets/themes/beautify/cover.png",
+            "styles": [
+                {
+                    "title": "Smoothen skin",
+                    "image_url": "assets/themes/beautify/1-smoothen-skin.jpeg",
+                    "prompt": "Smoothen skin"
+                },
+                {
+                    "title": "Full lips",
+                    "image_url": "assets/themes/beautify/2-bigger-lips.jpeg",
+                    "prompt": "make the lips bigger and thicker"
+                },
+                {
+                    "title": "Add freckles",
+                    "image_url": "assets/themes/beautify/3-add-freckles.jpeg",
+                    "prompt": "Add subtle freckles"
+                },
+                {
+                    "title": "Expressive eyes",
+                    "image_url": "assets/themes/beautify/4-eye-shape.jpeg",
+                    "prompt": "Improve eye shape"
+                },
+                {
+                    "title": "Symmetric face",
+                    "image_url": "assets/themes/beautify/5-symmetric-face.jpeg",
+                    "prompt": "make face more symmetric"
+                },
+                {
+                    "title": "Blushed cheeks",
+                    "image_url": "assets/themes/beautify/6-blushed-cheeks.jpeg",
+                    "prompt": "make cheeks slightly blushed"
+                }
+            ]
+        }
+    ]
+}

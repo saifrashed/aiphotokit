@@ -1,0 +1,42 @@
+name: aiphotokit
+description: "All-In-One AI photo Generator & Editor"
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.3
+  google_fonts: ^6.3.3
+  go_router: ^16.2.1
+  http: ^1.4.0
+  flutter_dotenv: ^6.0.0
+  provider: ^6.1.5
+  image_picker: ^1.1.2
+  purchases_flutter: ^9.6.0
+  url_launcher: ^6.3.1
+  flutter_launcher_icons: ^0.14.3
+  share_plus: ^12.0.0
+  purchases_ui_flutter: ^9.6.0
+  http_parser: ^4.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - .env
+    - assets/
+    - assets/themes/
+    - assets/themes/beautify/
