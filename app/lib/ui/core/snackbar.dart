@@ -8,6 +8,8 @@ void showSnackBar(BuildContext context, String message) {
       backgroundColor: Colors.white,
       duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
+      dismissDirection: DismissDirection.up,
+      margin: EdgeInsets.only(bottom: 100, left: 10, right: 10),
     ),
   );
 }

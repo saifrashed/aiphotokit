@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:aiphotokit/ui/compose/view_model/compose_viewmodel.dart';
 import 'package:aiphotokit/data/theme_model.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
@@ -23,7 +24,10 @@ class ComposeScreen extends StatefulWidget {
 class ComposeScreenState extends State<ComposeScreen> {
   ComposeViewmodel get viewModel => widget.viewModel;
 
+  final ImagePicker _picker = ImagePicker();
+
   ThemeModel? selectedTheme;
+  XFile? _selectedImage;
 
   late final TextEditingController _promptController;
 
@@ -49,6 +53,28 @@ class ComposeScreenState extends State<ComposeScreen> {
     }
   }
 
+  Future<void> _pickImage(BuildContext context) async {
+    try {
+      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = pickedFile;
+        });
+
+        HapticFeedback.heavyImpact();
+      }
+    } catch (e) {
+      if (context.mounted) showSnackBar(context, 'Please select an image');
+    }
+  }
+
+  void _removeImage() {
+    setState(() {
+      _selectedImage = null;
+      viewModel.selectedStyle = null;
+    });
+  }
+
   Future<void> showPaywall() async {
     HapticFeedback.heavyImpact();
     final offerings = await Purchases.getOfferings();
@@ -71,9 +97,8 @@ class ComposeScreenState extends State<ComposeScreen> {
       builder: (context, _) {
         final bool hasCustomPrompt =
             (viewModel.customPrompt ?? '').trim().isNotEmpty;
-        final bool showStyleOption = !hasCustomPrompt;
+        final bool showStyleOption = !hasCustomPrompt && _selectedImage != null;
 
-        // 1. Wrap Scaffold in PopScope to prevent system back navigation
         return PopScope(
           canPop: !viewModel.isLoading,
           child: Scaffold(
@@ -81,7 +106,6 @@ class ComposeScreenState extends State<ComposeScreen> {
               centerTitle: true,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
-                // 2. Disable the UI back button if loading
                 onPressed:
                     viewModel.isLoading
                         ? null
@@ -102,12 +126,12 @@ class ComposeScreenState extends State<ComposeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      // Optional: Disable style selection while loading too
                       onTap:
                           viewModel.isLoading
                               ? null
                               : () {
                                 HapticFeedback.heavyImpact();
+
                                 if (viewModel.selectedStyle != null) {
                                   viewModel.selectedStyle = null;
                                 } else {
@@ -126,7 +150,7 @@ class ComposeScreenState extends State<ComposeScreen> {
                           Text(
                             viewModel.selectedStyle != null
                                 ? viewModel.selectedStyle!.title
-                                : 'Add a style',
+                                : 'Apply a style',
                             style: FontStyles.bodyMediumLight,
                           ),
                           const SizedBox(width: 4),
@@ -156,26 +180,71 @@ class ComposeScreenState extends State<ComposeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  maxHeight:
-                                      MediaQuery.of(context).size.height * 0.55,
-                                ),
-                                child: Image.file(
-                                  File(viewModel.selectedImage.path),
-                                  fit: BoxFit.contain,
+                            if (_selectedImage == null)
+                              GestureDetector(
+                                onTap: () => {_pickImage(context)},
+                                child: Container(
                                   width: double.infinity,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        'assets/upload-icon.png',
+                                        height: 50,
+                                        width: 50,
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        "Upload to edit an image",
+                                        style: FontStyles.bodyMediumLight
+                                            .copyWith(
+                                              fontSize: 14,
+                                              color: Colors.white54,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                            if (_selectedImage != null)
+                              Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(
+                                      File(_selectedImage!.path),
+                                      fit: BoxFit.contain,
+                                      width: double.infinity,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 8,
+                                    right: 8,
+                                    child: GestureDetector(
+                                      onTap: _removeImage,
+                                      child: const CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: Colors.black54,
+                                        child: Icon(
+                                          Icons.close,
+                                          size: 24,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             const SizedBox(height: 20),
                             if (viewModel.selectedStyle == null ||
                                 hasCustomPrompt)
                               TextField(
                                 controller: _promptController,
-                                // Optional: Disable text input while loading
                                 enabled: !viewModel.isLoading,
                                 maxLines: 5,
                                 minLines: 3,
@@ -186,7 +255,9 @@ class ComposeScreenState extends State<ComposeScreen> {
                                 ),
                                 decoration: InputDecoration(
                                   hintText:
-                                      'Choose a style or describe your desired style in this textbox...',
+                                      _selectedImage == null
+                                          ? "What do you want to create?"
+                                          : "What do you want to change?",
                                   hintStyle: FontStyles.bodyMediumLight
                                       .copyWith(
                                         fontSize: 14,
@@ -206,43 +277,43 @@ class ComposeScreenState extends State<ComposeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '- Generated by AI so results may not always be accurate.',
+                                  '- AI results may vary in accuracy.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- The recommendation is to upload a high-quality selfie with one face. Follow style theme cover image as an example.',
+                                  '- For best results, use high-quality images matching the style.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- The face should be clearly visible for the AI.',
+                                  '- Ensure faces are clearly visible.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- If a generation did not go through then the AI system blocked it for safety reasons, try again if you think it was not correct.',
+                                  '- Safety filters may block generations. Retry if this seems incorrect.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- Images containing profanity will be blocked by the system.',
+                                  '- Inappropriate content will be blocked.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- Users retain commercial rights to generated images.',
+                                  '- You retain commercial rights to your images.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
                                 ),
                                 Text(
-                                  '- Uploaded images are processed solely for creation and not stored.',
+                                  '- Images are processed for creation only and not stored.',
                                   style: FontStyles.bodyMediumLight.copyWith(
                                     fontSize: 12,
                                   ),
@@ -262,7 +333,6 @@ class ComposeScreenState extends State<ComposeScreen> {
                         width: double.infinity,
                         height: 75,
                         child: ElevatedButton(
-                          // 3. Disable clicks by setting onPressed to null if loading
                           onPressed:
                               viewModel.isLoading
                                   ? null
@@ -280,7 +350,7 @@ class ComposeScreenState extends State<ComposeScreen> {
                                     if (prompt.isEmpty) {
                                       showSnackBar(
                                         context,
-                                        "Please enter a prompt or select a style",
+                                        "Enter a prompt or apply a style",
                                       );
                                       return;
                                     }
@@ -290,15 +360,17 @@ class ComposeScreenState extends State<ComposeScreen> {
                                       return;
                                     }
 
-                                    debugPrint(
-                                      "Generating with prompt: $prompt",
-                                    );
+                                    if (_selectedImage == null) {
+                                      viewModel.generate(context, prompt);
+                                    }
 
-                                    viewModel.generate(
-                                      context,
-                                      File(viewModel.selectedImage.path),
-                                      prompt,
-                                    );
+                                    if (_selectedImage != null) {
+                                      viewModel.edit(
+                                        context,
+                                        File(_selectedImage!.path),
+                                        prompt,
+                                      );
+                                    }
                                   },
                           style: ElevatedButton.styleFrom(
                             elevation: 8,
@@ -307,7 +379,6 @@ class ComposeScreenState extends State<ComposeScreen> {
                             ),
                             padding: EdgeInsets.zero,
                           ),
-                          // 4. Show Spinner if loading, else show Text/Icon
                           child:
                               viewModel.isLoading
                                   ? Row(
@@ -321,9 +392,7 @@ class ComposeScreenState extends State<ComposeScreen> {
                                           strokeWidth: 3,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        width: 12,
-                                      ), // Space between spinner and text
+                                      const SizedBox(width: 12),
                                       Text(
                                         'Generating...',
                                         style: FontStyles.bodyMediumLight
@@ -342,8 +411,7 @@ class ComposeScreenState extends State<ComposeScreen> {
                                       const SizedBox(width: 12),
                                       Text(
                                         'Generate',
-                                        style: FontStyles.bodyMediumLight
-                                            .copyWith(fontSize: 18),
+                                        style: FontStyles.bodyLargeLight,
                                       ),
                                     ],
                                   ),

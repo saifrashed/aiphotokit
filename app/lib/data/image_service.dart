@@ -45,7 +45,60 @@ class ImageService {
     }
   }
 
-  Future<String?> generate(File file, String prompt) async {
+  Future<String?> generate(String prompt) async {
+    try {
+      final purchaserInfo = await Purchases.getCustomerInfo();
+      final userId = purchaserInfo.originalAppUserId;
+
+      // Standard POST request
+      final uri = Uri.parse(
+        'https://image-production-68ec.up.railway.app/api/image/create',
+      );
+
+      final response = await http.post(
+        uri,
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"prompt": prompt}),
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        String? imageUrl = jsonResponse['url'];
+
+        if (imageUrl == null) {
+          throw Exception('URL not found in response');
+        }
+
+        await storeImage(imageUrl);
+
+        // Credit deduction logic
+        final creditUrl = Uri.parse(
+          'https://sdasavfju5wbczf37helj63kaa0xjndb.lambda-url.us-east-1.on.aws/',
+        );
+        final creditBody = {
+          "apiKey": "sk_DqzGEzBcnEmQlbhqEwbcrPYBDHvOX",
+          "projectId": "proj980b9d92",
+          "customerId": userId,
+          "adjustments": {"CRD": -1},
+        };
+
+        await http.post(
+          creditUrl,
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(creditBody),
+        );
+
+        return imageUrl;
+      } else {
+        throw Exception('Failed to generate image: ${response.statusCode}');
+      }
+    } catch (error) {
+      debugPrint("Error: $error");
+      return null;
+    }
+  }
+
+  Future<String?> edit(File file, String prompt) async {
     try {
       final purchaserInfo = await Purchases.getCustomerInfo();
       final userId = purchaserInfo.originalAppUserId;

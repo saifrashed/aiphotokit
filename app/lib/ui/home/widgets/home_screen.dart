@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:aiphotokit/ui/core/fonts.dart';
-import 'package:aiphotokit/ui/core/snackbar.dart';
 import 'package:aiphotokit/ui/home/view_model/home_viewmodel.dart';
 import 'package:aiphotokit/ui/home/widgets/preview_widget.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
@@ -20,8 +18,6 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   HomeViewModel get viewModel => widget.viewModel;
-  final ImagePicker _picker = ImagePicker();
-  XFile? _selectedImage;
 
   @override
   void initState() {
@@ -34,24 +30,6 @@ class HomeScreenState extends State<HomeScreen> {
     final offering = offerings.getOffering("credits");
     await RevenueCatUI.presentPaywall(offering: offering);
     await viewModel.getBalance();
-  }
-
-  Future<void> _pickImage(BuildContext context) async {
-    try {
-      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-      if (pickedFile != null) {
-        setState(() {
-          _selectedImage = pickedFile;
-        });
-
-        HapticFeedback.heavyImpact();
-        if (context.mounted) {
-          context.go("/compose", extra: pickedFile);
-        }
-      }
-    } catch (e) {
-      if (context.mounted) showSnackBar(context, 'Please select an image');
-    }
   }
 
   @override
@@ -115,7 +93,8 @@ class HomeScreenState extends State<HomeScreen> {
           height: 75,
           child: FloatingActionButton.extended(
             onPressed: () {
-              _pickImage(context);
+              HapticFeedback.heavyImpact();
+              context.go("/compose");
             },
             elevation: 8,
             shape: RoundedRectangleBorder(
@@ -124,9 +103,9 @@ class HomeScreenState extends State<HomeScreen> {
             label: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/upload-icon.png', height: 32, width: 32),
+                Text('Generate', style: FontStyles.bodyLargeLight),
                 const SizedBox(width: 12),
-                Text('Select an image', style: FontStyles.bodyMediumLight),
+                Image.asset('assets/arrow-icon.png', height: 32, width: 32),
               ],
             ),
           ),

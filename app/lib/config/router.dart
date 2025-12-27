@@ -5,7 +5,6 @@ import 'package:aiphotokit/ui/home/view_model/home_viewmodel.dart';
 import 'package:aiphotokit/ui/home/widgets/home_screen.dart';
 import 'package:aiphotokit/ui/settings/view_models/settings_viewmodel.dart';
 import 'package:aiphotokit/ui/settings/widgets/settings_screen.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 GoRouter router() => GoRouter(
@@ -24,15 +23,9 @@ GoRouter router() => GoRouter(
     GoRoute(
       path: '/compose',
       pageBuilder: (context, state) {
-        // Extract the XFile passed via extra
-        final XFile selectedImage = state.extra as XFile;
-
         return NoTransitionPage(
           child: ComposeScreen(
-            viewModel: ComposeViewmodel(
-              imageService: context.read(),
-              selectedImage: selectedImage,
-            ),
+            viewModel: ComposeViewmodel(imageService: context.read()),
           ),
         );
       },

@@ -22,8 +22,6 @@ class HomeViewModel extends ChangeNotifier {
     try {
       _images = await _imageService.getImages();
       notifyListeners();
-
-      debugPrint(_images.toString());
     } catch (error) {
       debugPrint("Could not fetch images");
     }

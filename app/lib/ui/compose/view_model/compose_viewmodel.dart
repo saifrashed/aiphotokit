@@ -11,15 +11,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class ComposeViewmodel extends ChangeNotifier {
-  ComposeViewmodel({
-    required ImageService imageService,
-    required this.selectedImage,
-  }) : _imageService = imageService {
+  ComposeViewmodel({required ImageService imageService})
+    : _imageService = imageService {
     getBalance();
     fetchThemes();
   }
-
-  XFile selectedImage;
 
   final ImageService _imageService;
   ImageService get imageService => _imageService;
@@ -67,10 +63,10 @@ class ComposeViewmodel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> generate(BuildContext context, File file, String prompt) async {
+  Future<void> generate(BuildContext context, String prompt) async {
     try {
       isLoading = true;
-      String? url = await imageService.generate(file, prompt);
+      String? url = await imageService.generate(prompt);
       debugPrint("Generated URL: $url");
       isLoading = false;
 
@@ -81,14 +77,26 @@ class ComposeViewmodel extends ChangeNotifier {
     }
   }
 
+  Future<void> edit(BuildContext context, File file, String prompt) async {
+    try {
+      isLoading = true;
+      String? url = await imageService.edit(file, prompt);
+      debugPrint("Generated URL: $url");
+      isLoading = false;
+
+      if (context.mounted) context.go("/");
+    } catch (error) {
+      debugPrint("Error editting: $error");
+      isLoading = false;
+    }
+  }
+
   Future<void> getBalance() async {
     try {
       await Purchases.invalidateVirtualCurrenciesCache();
       final virtualCurrencies = await Purchases.getVirtualCurrencies();
       final virtualCurrency = virtualCurrencies.all["CRD"];
       _balance = virtualCurrency?.balance;
-
-      debugPrint(_balance.toString());
 
       notifyListeners();
     } catch (error) {
