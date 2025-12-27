@@ -34,9 +34,9 @@ class PreviewWidgetState extends State<PreviewWidget> {
     Uint8List bytes = response.bodyBytes;
 
     final params = ShareParams(
-      title: "I Created a Stunning Hijab Look with HijabAI!",
+      title: "I Created an AI image with AIPhotoKit!",
       text:
-          "Look at this amazing image I designed using HijabAI! Try it yourself and create your own unique style! ✨ #HijabAI",
+          "Look at this amazing image I created using AIPhotoKit! Download in the App Store and create your own unique photo ✨",
       files: [XFile.fromData(bytes, mimeType: 'image/png')],
       fileNameOverrides: ['image.png'],
     );
@@ -84,27 +84,29 @@ class PreviewWidgetState extends State<PreviewWidget> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.network(
-                image,
-                width: double.infinity,
-                fit: BoxFit.contain,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const CircularProgressIndicator();
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return const Text('Failed to load image');
-                },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Image.network(
+                  image,
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const CircularProgressIndicator();
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Text('Failed to load image');
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

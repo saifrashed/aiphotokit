@@ -37,10 +37,8 @@ class ImageService {
       final prefs = await SharedPreferences.getInstance();
       List<String> imageList = prefs.getStringList('image_urls') ?? [];
 
-      // Remove the specified image URL from the list
       imageList.remove(imageUrl);
 
-      // Update the SharedPreferences with the modified list
       await prefs.setStringList('image_urls', imageList);
     } catch (error) {
       debugPrint('Error deleting image URL: $error');
@@ -76,15 +74,11 @@ class ImageService {
         throw Exception('File not found: ${file.path}');
       }
 
-      // Send the request and get the response
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
 
-      // Check the response status
       if (response.statusCode == 200) {
-        // Parse the JSON response
         var jsonResponse = jsonDecode(response.body);
-        // Extract the 'url' field (string)
         String? imageUrl = jsonResponse['url'];
 
         if (imageUrl == null) {
@@ -97,8 +91,8 @@ class ImageService {
           'https://sdasavfju5wbczf37helj63kaa0xjndb.lambda-url.us-east-1.on.aws/',
         );
         final body = {
-          "apiKey": "sk_QBNADBptUtHachlSLvWeIbYrWvdwX",
-          "projectId": "proj2c2ed15b",
+          "apiKey": "sk_DqzGEzBcnEmQlbhqEwbcrPYBDHvOX",
+          "projectId": "proj980b9d92",
           "customerId": userId,
           "adjustments": {"CRD": -1},
         };
@@ -109,13 +103,13 @@ class ImageService {
           body: jsonEncode(body),
         );
 
-        return imageUrl; // Return the image URL on success
+        return imageUrl;
       } else {
         throw Exception('Failed to generate image: ${response.statusCode}');
       }
     } catch (error) {
       debugPrint("Error: $error");
-      return null; // Return null on error
+      return null;
     }
   }
 }

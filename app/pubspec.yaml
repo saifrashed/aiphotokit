@@ -1,8 +1,8 @@
 name: aiphotokit
-description: "All-In-One AI photo Generator & Editor"
+description: "AI photo Generator & Editor"
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.0+4
 
 environment:
   sdk: ^3.7.2
@@ -39,4 +39,9 @@ flutter:
     - .env
     - assets/
     - assets/themes/
-    - assets/themes/beautify/
+    - assets/themes/female-hairstyles/
+    - assets/themes/male-hairstyles/
+    - assets/themes/facial-enhancements/
+    - assets/themes/natural-hair-color/
+    - assets/themes/valentines-day/
+    - assets/themes/national-soccer/

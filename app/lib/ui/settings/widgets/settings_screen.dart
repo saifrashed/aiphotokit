@@ -52,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
             onTap: () {
               HapticFeedback.mediumImpact();
-              _launchURL('https://www.hijabai.com/terms-and-conditions');
+              _launchURL('https://saifrashed.com/terms-and-privacy.pdf');
             },
           ),
           ListTile(
@@ -60,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
             onTap: () {
               HapticFeedback.mediumImpact();
-              _launchURL('https://www.hijabai.com/privacy-policy');
+              _launchURL('https://saifrashed.com/terms-and-privacy.pdf');
             },
           ),
           Padding(

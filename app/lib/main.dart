@@ -24,8 +24,7 @@ Future<void> initRevenueCat() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await dotenv.load(fileName: ".env"); // Load the .env file
-
+  await dotenv.load(fileName: ".env");
   await initRevenueCat();
 
   runApp(MultiProvider(providers: defaultProviders, child: const MainApp()));
@@ -38,7 +37,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'AIPhotoKit',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF000000),
+        scaffoldBackgroundColor: Color(0xFF141414),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.white,
           selectionHandleColor: Colors.grey,
@@ -46,24 +45,24 @@ class MainApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          backgroundColor: Color(0xFF000000),
+          backgroundColor: Color(0xFF141414),
         ),
         highlightColor: Colors.transparent,
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
         splashFactory: NoSplash.splashFactory,
         buttonTheme: const ButtonThemeData(
-          buttonColor: Color(0xFF125fcc),
+          buttonColor: Color(0xFFd89c4c),
           textTheme: ButtonTextTheme.primary,
         ),
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xFF125fcc)),
+            backgroundColor: WidgetStatePropertyAll(Color(0xFFd89c4c)),
             foregroundColor: WidgetStatePropertyAll(Colors.white),
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color(0xFF125fcc),
+          backgroundColor: Color(0xFFd89c4c),
           foregroundColor: Colors.white,
         ),
       ),

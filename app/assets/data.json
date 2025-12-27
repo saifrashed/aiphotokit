@@ -1,38 +1,358 @@
 {
     "themes": [
         {
-            "title": "Beautify",
-            "image_url": "assets/themes/beautify/cover.png",
+            "title": "Female hairstyles",
+            "image_url": "assets/themes/female-hairstyles/cover.jpeg",
+            "styles": [
+                {
+                    "title": "Bob cut",
+                    "image_url": "assets/themes/female-hairstyles/1-bob-cut.jpeg",
+                    "prompt": "make hairstyle into Bob Cut"
+                },
+                {
+                    "title": "Pixie Cut",
+                    "image_url": "assets/themes/female-hairstyles/2-pixie-cut.jpeg",
+                    "prompt": "make hairstyle into Pixie cut"
+                },
+                {
+                    "title": "Layered Hair",
+                    "image_url": "assets/themes/female-hairstyles/3-layered-hair.jpeg",
+                    "prompt": "make hairstyle into layered hair"
+                },
+                {
+                    "title": "Beach Waves",
+                    "image_url": "assets/themes/female-hairstyles/4-beach-waves.jpeg",
+                    "prompt": "make hairstyle into Beach Waves"
+                },
+                {
+                    "title": "Straight and Sleek",
+                    "image_url": "assets/themes/female-hairstyles/5-straight-and-sleek.jpeg",
+                    "prompt": "make hairstyle into straight and sleek"
+                },
+                {
+                    "title": "Braids",
+                    "image_url": "assets/themes/female-hairstyles/6-braids.jpeg",
+                    "prompt": "make hairstyle into braids"
+                },
+                {
+                    "title": "Ponytail",
+                    "image_url": "assets/themes/female-hairstyles/7-ponytail.jpeg",
+                    "prompt": "make hairstyle into ponytail"
+                },
+                {
+                    "title": "Updo",
+                    "image_url": "assets/themes/female-hairstyles/8-updo.jpeg",
+                    "prompt": "make hairstyle into updo"
+                },
+                {
+                    "title": "Curly Hair",
+                    "image_url": "assets/themes/female-hairstyles/9-curly-hair.jpeg",
+                    "prompt": "make hairstyle into curly hair"
+                },
+                {
+                    "title": "Half-Up, Half-Down",
+                    "image_url": "assets/themes/female-hairstyles/10-halfuphalfdown.jpeg",
+                    "prompt": "make hairstyle into Half-Up, Half-Down"
+                }
+            ]
+        },
+        {
+            "title": "Male hairstyles",
+            "image_url": "assets/themes/male-hairstyles/cover.jpeg",
+            "styles": [
+                {
+                    "title": "Buzz cut",
+                    "image_url": "assets/themes/male-hairstyles/1-buzzcut.jpeg",
+                    "prompt": "make hairstyle into Buzz cut with fade"
+                },
+                {
+                    "title": "Crew Cut",
+                    "image_url": "assets/themes/male-hairstyles/2-crewcut.jpeg",
+                    "prompt": "make hairstyle into Crew Cut with fade"
+                },
+                {
+                    "title": "Undercut",
+                    "image_url": "assets/themes/male-hairstyles/3-undercut.jpeg",
+                    "prompt": "make hairstyle into Undercut"
+                },
+                {
+                    "title": "Pompadour",
+                    "image_url": "assets/themes/male-hairstyles/4-pompadour.jpeg",
+                    "prompt": "make hairstyle into Pompadour"
+                },
+                {
+                    "title": "Side Part",
+                    "image_url": "assets/themes/male-hairstyles/5-sidepart.jpeg",
+                    "prompt": "make hairstyle into Side Part"
+                },
+                {
+                    "title": "Quiff",
+                    "image_url": "assets/themes/male-hairstyles/6-quiff.jpeg",
+                    "prompt": "make hairstyle into Quiff"
+                },
+                {
+                    "title": "Fade Cut",
+                    "image_url": "assets/themes/male-hairstyles/7-fadecut.jpeg",
+                    "prompt": "make hairstyle into Fade Cut"
+                },
+                {
+                    "title": "Textured Crop",
+                    "image_url": "assets/themes/male-hairstyles/8-texturedcrop.jpeg",
+                    "prompt": "make hairstyle into Textured Crop"
+                },
+                {
+                    "title": "Man Bun",
+                    "image_url": "assets/themes/male-hairstyles/9-manbun.jpeg",
+                    "prompt": "make hairstyle into Man Bun"
+                },
+                {
+                    "title": "Long Layers",
+                    "image_url": "assets/themes/male-hairstyles/10-longlayers.jpeg",
+                    "prompt": "make hairstyle into Long Layers"
+                }
+            ]
+        },
+        {
+            "title": "Facial enhancements",
+            "image_url": "assets/themes/facial-enhancements/cover.jpeg",
             "styles": [
                 {
                     "title": "Smoothen skin",
-                    "image_url": "assets/themes/beautify/1-smoothen-skin.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/1-smoothen-skin.jpeg",
                     "prompt": "Smoothen skin"
                 },
                 {
                     "title": "Full lips",
-                    "image_url": "assets/themes/beautify/2-bigger-lips.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/2-bigger-lips.jpeg",
                     "prompt": "make the lips bigger and thicker"
                 },
                 {
                     "title": "Add freckles",
-                    "image_url": "assets/themes/beautify/3-add-freckles.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/3-add-freckles.jpeg",
                     "prompt": "Add subtle freckles"
                 },
                 {
                     "title": "Expressive eyes",
-                    "image_url": "assets/themes/beautify/4-eye-shape.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/4-eye-shape.jpeg",
                     "prompt": "Improve eye shape"
                 },
                 {
                     "title": "Symmetric face",
-                    "image_url": "assets/themes/beautify/5-symmetric-face.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/5-symmetric-face.jpeg",
                     "prompt": "make face more symmetric"
                 },
                 {
                     "title": "Blushed cheeks",
-                    "image_url": "assets/themes/beautify/6-blushed-cheeks.jpeg",
+                    "image_url": "assets/themes/facial-enhancements/6-blushed-cheeks.jpeg",
                     "prompt": "make cheeks slightly blushed"
+                },
+                {
+                    "title": "Whiten Teeth",
+                    "image_url": "assets/themes/facial-enhancements/7-whitenteeth.jpeg",
+                    "prompt": "whiten the teeth"
+                }
+            ]
+        },
+        {
+            "title": "Natural hair colors",
+            "image_url": "assets/themes/natural-hair-color/cover.jpeg",
+            "styles": [
+                {
+                    "title": "Black",
+                    "image_url": "assets/themes/natural-hair-color/1-black-hair.jpeg",
+                    "prompt": "change hair color to black"
+                },
+                {
+                    "title": "Dark brown",
+                    "image_url": "assets/themes/natural-hair-color/2-dark-brown.jpeg",
+                    "prompt": "change hair color to dark brown"
+                },
+                {
+                    "title": "Medium brown",
+                    "image_url": "assets/themes/natural-hair-color/3-medium-brown.jpeg",
+                    "prompt": "change hair color to medium brown"
+                },
+                {
+                    "title": "Light brown",
+                    "image_url": "assets/themes/natural-hair-color/4-light-brown.jpeg",
+                    "prompt": "change hair color to light brown"
+                },
+                {
+                    "title": "Blond",
+                    "image_url": "assets/themes/natural-hair-color/5-blonde.jpeg",
+                    "prompt": "change hair color to blonde"
+                },
+                {
+                    "title": "Red",
+                    "image_url": "assets/themes/natural-hair-color/6-red.jpeg",
+                    "prompt": "change hair color to natural red"
+                },
+                {
+                    "title": "White/gray",
+                    "image_url": "assets/themes/natural-hair-color/7-white.jpeg",
+                    "prompt": "change hair color to natural white/gray"
+                }
+            ]
+        },
+        {
+            "title": "Valentine's day",
+            "image_url": "assets/themes/valentines-day/cover.jpeg",
+            "styles": [
+                {
+                    "title": "Hearts in the background",
+                    "image_url": "assets/themes/valentines-day/1-hearts-in-background.jpeg",
+                    "prompt": "hearts in the background"
+                },
+                {
+                    "title": "Heart with hands",
+                    "image_url": "assets/themes/valentines-day/2-making-heart-with-hands.jpeg",
+                    "prompt": "couple making heart with hands"
+                },
+                {
+                    "title": "Silhouetted sunset",
+                    "image_url": "assets/themes/valentines-day/3-silhouetted-sunset.jpeg",
+                    "prompt": "silhouetted at sunset with pink/red sky"
+                },
+                {
+                    "title": "Pink background",
+                    "image_url": "assets/themes/valentines-day/4-pink-background-hearts.jpeg",
+                    "prompt": "pink background with hearts"
+                }
+            ]
+        },
+        {
+            "title": "National Football Supporter",
+            "image_url": "assets/themes/national-soccer/cover.jpeg",
+            "styles": [
+                {
+                    "title": "United States Supporter",
+                    "image_url": "assets/themes/national-soccer/image01.jpeg",
+                    "prompt": "Have person in United States soccer outfit"
+                },
+                {
+                    "title": "Brazil Supporter",
+                    "image_url": "assets/themes/national-soccer/image02.jpeg",
+                    "prompt": "Have person in Brazil soccer outfit"
+                },
+                {
+                    "title": "Mexico Supporter",
+                    "image_url": "assets/themes/national-soccer/image03.jpeg",
+                    "prompt": "Have person in Mexico soccer outfit"
+                },
+                {
+                    "title": "Japan Supporter",
+                    "image_url": "assets/themes/national-soccer/image04.jpeg",
+                    "prompt": "Have person in Japan soccer outfit"
+                },
+                {
+                    "title": "Iran Supporter",
+                    "image_url": "assets/themes/national-soccer/image05.jpeg",
+                    "prompt": "Have person in Iran soccer outfit"
+                },
+                {
+                    "title": "Germany Supporter",
+                    "image_url": "assets/themes/national-soccer/image06.jpeg",
+                    "prompt": "Have person in Germany soccer outfit"
+                },
+                {
+                    "title": "Colombia Supporter",
+                    "image_url": "assets/themes/national-soccer/image07.jpeg",
+                    "prompt": "Have person in Colombia soccer outfit"
+                },
+                {
+                    "title": "France Supporter",
+                    "image_url": "assets/themes/national-soccer/image08.jpeg",
+                    "prompt": "Have person in France soccer outfit"
+                },
+                {
+                    "title": "United Kingdom Supporter",
+                    "image_url": "assets/themes/national-soccer/image09.jpeg",
+                    "prompt": "Have person in United Kingdom soccer outfit"
+                },
+                {
+                    "title": "South Korea Supporter",
+                    "image_url": "assets/themes/national-soccer/image10.jpeg",
+                    "prompt": "Have person in South Korea soccer outfit"
+                },
+                {
+                    "title": "Egypt Supporter",
+                    "image_url": "assets/themes/national-soccer/image11.jpeg",
+                    "prompt": "Have person in Egypt soccer outfit"
+                },
+                {
+                    "title": "Argentina Supporter",
+                    "image_url": "assets/themes/national-soccer/image12.jpeg",
+                    "prompt": "Have person in Argentina soccer outfit"
+                },
+                {
+                    "title": "South Africa Supporter",
+                    "image_url": "assets/themes/national-soccer/image13.jpeg",
+                    "prompt": "Have person in South Africa soccer outfit"
+                },
+                {
+                    "title": "Spain Supporter",
+                    "image_url": "assets/themes/national-soccer/image14.jpeg",
+                    "prompt": "Have person in Spain soccer outfit"
+                },
+                {
+                    "title": "Canada Supporter",
+                    "image_url": "assets/themes/national-soccer/image15.jpeg",
+                    "prompt": "Have person in Canada soccer outfit"
+                },
+                {
+                    "title": "Morocco Supporter",
+                    "image_url": "assets/themes/national-soccer/image16.jpeg",
+                    "prompt": "Have person in Morocco soccer outfit"
+                },
+                {
+                    "title": "Australia Supporter",
+                    "image_url": "assets/themes/national-soccer/image17.jpeg",
+                    "prompt": "Have person in Australia soccer outfit"
+                },
+                {
+                    "title": "Ghana Supporter",
+                    "image_url": "assets/themes/national-soccer/image18.jpeg",
+                    "prompt": "Have person in Ghana soccer outfit"
+                },
+                {
+                    "title": "Ivory Coast Supporter",
+                    "image_url": "assets/themes/national-soccer/image19.jpeg",
+                    "prompt": "Have person in Ivory Coast soccer outfit"
+                },
+                {
+                    "title": "Netherlands Supporter",
+                    "image_url": "assets/themes/national-soccer/image20.jpeg",
+                    "prompt": "Have person in Netherlands soccer outfit"
+                },
+                {
+                    "title": "Senegal Supporter",
+                    "image_url": "assets/themes/national-soccer/image21.jpeg",
+                    "prompt": "Have person in Senegal soccer outfit"
+                },
+                {
+                    "title": "Uzbekistan Supporter",
+                    "image_url": "assets/themes/national-soccer/image22.jpeg",
+                    "prompt": "Have person in Uzbekistan soccer outfit"
+                },
+                {
+                    "title": "Saudi Arabia Supporter",
+                    "image_url": "assets/themes/national-soccer/image23.jpeg",
+                    "prompt": "Have person in Saudi Arabia soccer outfit"
+                },
+                {
+                    "title": "Belgium Supporter",
+                    "image_url": "assets/themes/national-soccer/image24.jpeg",
+                    "prompt": "Have person in Belgium soccer outfit"
+                },
+                {
+                    "title": "Portugal Supporter",
+                    "image_url": "assets/themes/national-soccer/image25.jpeg",
+                    "prompt": "Have person in Portugal soccer outfit"
+                },
+                {
+                    "title": "Jordan Supporter",
+                    "image_url": "assets/themes/national-soccer/image26.jpeg",
+                    "prompt": "Have person in Jordan soccer outfit"
                 }
             ]
         }
